@@ -36,7 +36,15 @@ function makePool(src) {
   };
 }
 
-const playSteve = makePool('media/steve-yell.mp3');
+// two takes of him saying it, one per press, picked at random.
+// both are trimmed to a single "Steve!" and levelled to match each other.
+const steveTakes = ['media/steve-a.wav', 'media/steve-b.wav'].map(makePool);
+function playSteve() {
+  const take = (Math.random() * steveTakes.length) | 0;
+  steveTakes[take]();
+  return take;
+}
+
 const playGummy = makePool('media/gummi-bears.mp3');
 
 /* --- gummi bear downpour --------------------------------------------- */
@@ -93,8 +101,8 @@ button.addEventListener('click', () => {
     dropBears();
     console.log('[steve] GUMMI BEARS (press #' + presses + ')');
   } else {
-    playSteve();
-    console.log('[steve] steeeeeve (press #' + presses + ')');
+    const take = playSteve();
+    console.log('[steve] steeeeeve, take ' + 'ab'[take] + ' (press #' + presses + ')');
   }
 
   if (!reducedMotion) {
