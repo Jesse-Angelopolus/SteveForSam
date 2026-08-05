@@ -1,7 +1,7 @@
 /* STEEEEEVE — press the thing on his chest. */
 
 const GUMMY_ODDS = 1 / 15;   // one press in fifteen
-const POOL_SIZE  = 6;        // lets you mash the button and hear them overlap
+const POOL_SIZE  = 4;        // lets you mash the button and hear them overlap
 
 const params      = new URLSearchParams(location.search);
 const forceGummy  = params.get('gummy') === '1';   // ?gummy=1 rigs every press
@@ -36,11 +36,18 @@ function makePool(src) {
   };
 }
 
-// two takes of him saying it, one per press, picked at random.
-// both are trimmed to a single "Steve!" and levelled to match each other.
-const steveTakes = ['media/steve-a.wav', 'media/steve-b.wav'].map(makePool);
+// three different recordings of "Steve", one per press, picked at random.
+// each is trimmed to a single utterance and levelled to match the others.
+// drop one from this list and the roll adjusts itself.
+const TAKES = ['media/steve-a.wav', 'media/steve-b.wav', 'media/steve-c.wav'];
+const steveTakes = TAKES.map(makePool);
+
+let lastTake = -1;
 function playSteve() {
-  const take = (Math.random() * steveTakes.length) | 0;
+  // avoid immediate repeats, otherwise a run of the same take reads as "it's broken"
+  let take = (Math.random() * steveTakes.length) | 0;
+  if (take === lastTake && steveTakes.length > 1) take = (take + 1 + ((Math.random() * (steveTakes.length - 1)) | 0)) % steveTakes.length;
+  lastTake = take;
   steveTakes[take]();
   return take;
 }
@@ -102,7 +109,7 @@ button.addEventListener('click', () => {
     console.log('[steve] GUMMI BEARS (press #' + presses + ')');
   } else {
     const take = playSteve();
-    console.log('[steve] steeeeeve, take ' + 'ab'[take] + ' (press #' + presses + ')');
+    console.log('[steve] steeeeeve, take ' + 'abc'[take] + ' (press #' + presses + ')');
   }
 
   if (!reducedMotion) {

@@ -30,10 +30,13 @@ media/       Steve, and the sound clips
 media/alt/   spare takes and the untouched originals
 ```
 
-There are two takes of him saying his name, `steve-a.wav` and `steve-b.wav`; a normal press
-rolls between them. Both are trimmed to a single "Steve!" and levelled to match — the source
-clips were one and two utterances respectively and about 7x apart in loudness. A third take
-sits in `media/alt/`; adding it is one entry in the `steveTakes` array in `script.js`.
+There are three different recordings of him saying his name — `steve-a/b/c.wav` — and a normal
+press rolls between them, never playing the same one twice in a row. Each is trimmed to a single
+utterance and levelled to match the others, since the sources ranged about 7x in loudness.
+
+They were picked by comparing log-mel spectrograms of every candidate: two clips that look like
+different files can be the same recording, and correlation catches that where filenames don't.
+Adding or dropping a take is one entry in the `TAKES` array in `script.js`.
 
 The button is positioned with the `--dome-x` / `--dome-y` custom properties at the top of
 `style.css`, as percentages of Steve's image box, so it stays on the dome at any screen size.
@@ -44,5 +47,7 @@ Steve, his voice (Neil Patrick Harris), and the gummi bears all belong to Sony P
 This is a non-commercial fan toy and claims none of it.
 
 - Steve cutout: [Cloudy with a Chance of Meatballs Wiki](https://cloudywithachanceofmeatballs.fandom.com/wiki/Steve)
-- "Steve!": [Myinstants](https://www.myinstants.com/en/instant/steve-cloudy-with-meatballs/) — both takes
-- "Gummi Bears.": [movie-sounds.org](https://movie-sounds.org/steve-the-monkey)
+- take a: [Myinstants](https://www.myinstants.com/en/instant/steve-cloudy-with-meatballs/)
+- take b: [movie-sounds.org](https://movie-sounds.org/steve-the-monkey) — quote listed as "Steve.", Neil Patrick Harris
+- take c: [Myinstants](https://www.myinstants.com/en/instant/steeeve-50460/)
+- "Gummi Bears.": [movie-sounds.org](https://movie-sounds.org/steve-the-monkey) — 00:50:30 in the film
