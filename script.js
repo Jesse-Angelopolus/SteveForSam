@@ -43,6 +43,7 @@ function makePool(src) {
 const TAKES = ["media/steve-a.wav", "media/steve-d.mp3"];
 const steveTakes = TAKES.map(makePool);
 
+/*
 let lastTake = -1;
 function playSteve() {
   // avoid immediate repeats, otherwise a run of the same take reads as "it's broken"
@@ -55,6 +56,7 @@ function playSteve() {
   steveTakes[take]();
   return take;
 }
+*/
 
 const playGummy = makePool("media/gummi-bears.mp3");
 
