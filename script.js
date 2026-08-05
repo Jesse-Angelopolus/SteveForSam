@@ -43,20 +43,19 @@ function makePool(src) {
 const TAKES = ["media/steve-a.wav", "media/steve-d.mp3"];
 const steveTakes = TAKES.map(makePool);
 
-/*
 let lastTake = -1;
 function playSteve() {
   // avoid immediate repeats, otherwise a run of the same take reads as "it's broken"
   let take = (Math.random() * steveTakes.length) | 0;
-  if (take === lastTake && steveTakes.length > 1)
+  /*if (take === lastTake && steveTakes.length > 1)
     take =
       (take + 1 + ((Math.random() * (steveTakes.length - 1)) | 0)) %
       steveTakes.length;
   lastTake = take;
+  */
   steveTakes[take]();
   return take;
 }
-*/
 
 const playGummy = makePool("media/gummi-bears.mp3");
 
